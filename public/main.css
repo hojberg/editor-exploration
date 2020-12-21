@@ -1,0 +1,425 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+p,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Variables */
+
+:root {
+  --main-width: 90rem;
+
+  --color-rosewood: #622f17;
+  --color-golden-hour: #bd8346;
+  --color-dark-habor: #193b44;
+  --color-kelp: #2c2c22;
+  --color-wet-sand: #dcd8d1;
+  --color-pier: #ac9574;
+  --color-sail: #f7f3f0;
+
+  --color-gray-darkest: #333;
+  --color-gray-dark: #555;
+  --color-gray-medium: #aaa;
+  --color-gray-light: #ddd;
+  --color-gray-lightest: #eee;
+
+  --color-main-bg: #1c1e26;
+  --color-main-fg: #cccecf;
+}
+
+/* Global */
+html {
+  font-size: 16px;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.4em;
+  background: var(--color-main-bg);
+  color: var(--color-main-fg);
+  padding: 3rem;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+article {
+  width: 400px;
+  margin-right: 3rem;
+}
+
+article h2 {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+a,
+a:visited {
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #efaf8e;
+  display: inline-block;
+  user-select: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  line-height: 1.1em;
+}
+
+button {
+  font-family: "JetBrains Mono", monospace;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 0;
+  color: #1c1e26;
+  user-select: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  color: #e3e6ee;
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+article h1 {
+  margin-bottom: 2rem;
+  line-height: 1.4em;
+  font-size: 1.62rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+#signature {
+  text-align: right;
+  opacity: 0.5;
+}
+
+/* -- Editor --------------------------------------------------------------- */
+
+#app {
+  font-family: "JetBrains Mono", monospace;
+  flex-grow: 1;
+}
+
+#editors {
+  display: flex;
+}
+
+.editor {
+  position: relative;
+  padding: 1rem;
+  background: #282a32;
+  border-radius: 0.2rem;
+  padding-bottom: 3rem;
+  margin-right: 2rem;
+  min-width: 500px;
+}
+
+.editor input {
+  background: #1d1e25;
+  border: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  margin-bottom: -2px;
+  color: var(--color-main-fg);
+  display: inline-block;
+  margin-right: 32px;
+  transition: all 0.3s;
+}
+
+.editor input:focus {
+  outline: none;
+}
+
+/* -- Syntax --------------------------------------------------------------- */
+
+.d,
+.b,
+.v,
+.t,
+.f,
+.s,
+.i,
+.o,
+.c,
+.k,
+.u {
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.d {
+  color: #e3e6ee;
+  margin-bottom: 1rem;
+  animation: fade-in 0.3s;
+}
+
+.b {
+  color: #e3e6ee;
+  padding-left: 1rem;
+  animation: fade-in 0.3s;
+}
+
+.expand-inline {
+  animation: fade-in 0.3s;
+}
+
+.v {
+  color: #e3e6ee;
+}
+
+.t,
+.f,
+.s {
+  color: #efaf8e;
+}
+
+.i {
+  color: #24a8b4;
+}
+
+.o {
+  color: #cccecf;
+  opacity: 0.5;
+}
+
+.c,
+.k {
+  color: #d96079;
+}
+
+.u {
+  color: #a777cc;
+}
+
+.namespace {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  color: #4d4e53;
+  user-select: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: inline-block;
+}
+
+.namespace label {
+  color: #fff;
+  opacity: 0.4;
+}
+
+/* -- Suggestion Details --------------------------------------------------- */
+
+.suggestion-details {
+  max-width: 400px;
+  text-align: left;
+}
+
+.suggestion-details h1 {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+.suggestion-details h2 {
+  font-size: 0.875rem;
+  margin-bottom: 1em;
+}
+
+.suggestion-details p {
+  font-size: 0.875rem;
+  margin-bottom: 1em;
+  text-align: left;
+  opacity: 0.8;
+}
+
+.suggestion-details .example {
+  margin-left: -1rem;
+}
+
+/* -- Typeahead ------------------------------------------------------------ */
+
+#typeahead {
+  position: absolute;
+  min-width: 600px;
+  z-index: 1000;
+}
+.input {
+  background: #1d1e25;
+  border: 0;
+  padding: 6px 12px 8px 12px;
+  border-radius: 6px 6px 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  border: 2px solid #58585c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: -2px;
+  color: var(--color-main-fg);
+  display: inline-block;
+  margin-right: 32px;
+  transition: all 0.3s;
+}
+
+.input:focus {
+  outline: none;
+}
+
+#typeahead-suggestions {
+  background: #101116;
+  border-radius: 0px 6px 6px 6px;
+  border: 2px solid #58585c;
+  display: flex;
+  flex-direction: row;
+  font-size: 0.875rem;
+  transition: all 0.3s;
+}
+
+#typeahead.is-focused #typeahead-input {
+  border-color: #75969f;
+  border-bottom-color: #58585c;
+}
+#typeahead.is-focused #typeahead-suggestions {
+  border-color: #75969f;
+}
+
+.typeahead-suggestion {
+  padding: 6px 12px;
+  border-top: 1px solid #2c2c30;
+  min-width: 300px;
+}
+.typeahead-suggestion:first-child {
+  border: 0;
+}
+.typeahead-suggestion.selected {
+  background: rgba(255, 255, 255, 0.1);
+}
+#typeahead-selection-detail {
+  padding: 6px 12px;
+  border-left: 1px solid #2c2c30;
+}
+
+/* -- Tooltip -------------------------------------------------------------- */
+
+.with-tooltip {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  left: 0;
+  bottom: 30px;
+  background: #101116;
+  color: #cccecf;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.2rem;
+  animation: slide-up 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+.tooltip:after {
+  top: 100%;
+  left: 8px;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(28, 30, 38, 0);
+  border-top-color: #101116;
+  border-width: 6px;
+  margin-left: -6px;
+  font-size: 0.75rem;
+}
+
+/* -- highlights ----------------------------------------------------------- */
+
+.no-highlight {
+  transition: all 0.3s;
+}
+
+.highlight {
+  transition: all 0.3s;
+  background: #1c1e26;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* -- TextualEditor -------------------------------------------------------- */
+
+.inline-slot {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: -6px;
+}
+
+/* -- Animations ----------------------------------------------------------- */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
